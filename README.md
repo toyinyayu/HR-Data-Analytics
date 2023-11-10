@@ -89,7 +89,7 @@ SELECT
     COUNT(*) AS Level_Count
 FROM (
     SELECT
-        JobLevel AS Original_Number,
+        JobLevel AS Filled_Number,
         CASE
             WHEN JobLevel = 1 THEN 'Level 1'
             WHEN JobLevel = 2 THEN 'Level 2'
@@ -116,7 +116,7 @@ SELECT
     COUNT(*) AS Years_Spent
 FROM (
     SELECT
-        TotalWorkingYears AS Original_Number,
+        TotalWorkingYears AS Filled_Number,
         CASE
             WHEN TotalWorkingYears BETWEEN 0 AND 5 THEN '0-5years'
             WHEN TotalWorkingYears BETWEEN 5 AND 10 THEN '6-10years'
@@ -148,7 +148,7 @@ SELECT
 	
 FROM (
     SELECT
-        DistanceFromHome AS Original_Number,
+        DistanceFromHome AS Filled_Number,
         CASE
             WHEN DistanceFromHome BETWEEN 0 AND 9 THEN 'Very close'
             WHEN DistanceFromHome BETWEEN 10 AND 19 THEN 'Close'
