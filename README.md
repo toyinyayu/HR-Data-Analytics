@@ -73,7 +73,8 @@ FROM
 
 ### Total Number of Employee Due for Retrenchment and Active Workers 
 
-```SQL 
+```SQL
+## This shows the result of Active Workers and Workers that will be Retrenched
 SELECT 
 	SUM(retrenched) AS Employee_Due_For_Retrenchment,
 	COUNT(CASE WHEN retrenched = 0 OR retrenched IS NULL THEN 1 ELSE NULL END) AS Active_Workers
@@ -84,6 +85,8 @@ SELECT
 ### Total Count of Employee By Job Level in 5 Different Level
 
 ```SQL
+## Job Level was categorized into 5 levels, with the number range of 1-5 in the column
+
 SELECT
     JobLevel,
     COUNT(*) AS Level_Count
@@ -111,6 +114,8 @@ ORDER BY
 ### Total Years Spent By Employee in Ranges 
 
 ```SQL
+## Years Spent in Company was break down into sequence of 5, The ranges are in sequence of 5.
+
 SELECT
     TotalWorkingYears,
     COUNT(*) AS Years_Spent
@@ -123,9 +128,9 @@ FROM (
             WHEN TotalWorkingYears BETWEEN 11 AND 15 THEN '11-15years'
             WHEN TotalWorkingYears BETWEEN 16 AND 20 THEN '16-20years'
             WHEN TotalWorkingYears BETWEEN 21 AND 25 THEN '21-25years'
-			WHEN TotalWorkingYears BETWEEN 26 AND 30 THEN '26-30years'
-			WHEN TotalWorkingYears BETWEEN 31 AND 35 THEN '31-35years'
-			WHEN TotalWorkingYears BETWEEN 36 AND 40 THEN '36years Above'
+	    WHEN TotalWorkingYears BETWEEN 26 AND 30 THEN '26-30years'
+            WHEN TotalWorkingYears BETWEEN 31 AND 35 THEN '31-35years'
+            WHEN TotalWorkingYears BETWEEN 36 AND 40 THEN '36years Above'
 
    
         END AS TotalWorkingYears
@@ -141,9 +146,11 @@ ORDER BY
 ### Employee Based on Distance from Work
 
 ```SQL
+## Employee Distance from Home was categorize into 3, with
+## Number ranges from 1 - 30. So the number was breakdown into 3 category
 SELECT
     DistanceFromHome,
-    COUNT(*) AS Years_Spent
+    COUNT(*) AS Employee_by_Distance
 	
 	
 FROM (
@@ -162,6 +169,45 @@ GROUP BY
     DistanceFromHome
 ORDER BY
 	DistanceFromHome ASC;
+```
+
+### Employee By Job Satisfaction
+
+```SQL
+## We have a column of Employee Job Satsifaction with number ranges from 1 - 4.
+## Each number is categorize to Low, Medium, High and Very High
+SELECT
+    JobSatisfaction,
+    COUNT(*) AS CounT_Job_Satisfactory_Level
+	
+FROM (
+    SELECT
+        JobSatisfaction AS Filled_Number,
+        CASE
+            WHEN JobSatisfaction = 1 THEN 'Low'
+            WHEN JobSatisfaction = 2 THEN 'Medium'
+            WHEN JobSatisfaction = 3 THEN 'High'
+            WHEN JobSatisfaction = 4 THEN 'Very High'
+           
+        END AS JobSatisfaction
+    FROM
+        hr_mgt.dbo.hr_analytics_data
+) AS Subquery
+GROUP BY
+    JobSatisfaction
+ORDER BY
+	JobSatisfaction ASC;
+```
+
+### Employee by Overtime by Count and Percentage
+
+```SQL
+SELECT (Overtime), 
+  COUNT(*) As Employee_by_Overtime,
+  CONCAT(ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2), '%') AS Percentage
+  FROM [hr_mgt].[dbo].[hr_analytics_data]
+  GROUP BY (Overtime)
+
 ```
 
 
