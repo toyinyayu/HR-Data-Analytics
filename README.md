@@ -10,6 +10,11 @@
 This project shows the Analysis for an HR Department, showing relevant KPIs to show Employee Performance and Job Satisfaction and also help the organization to improve on their people skills and recruitment process.
 ![HR Data CCG_page-0001](https://github.com/toyinyayu/HR-Data-Analytics/assets/31111105/4114cb97-eb46-4b3b-ac9c-cec69f2790ca)
 
+![HR Data CCG_page-0002](https://github.com/toyinyayu/HR-Data-Analytics/assets/31111105/af1a0b0e-3fb9-4a99-9591-a93ba1641dd5)
+
+
+![HR Data CCG_page-0003](https://github.com/toyinyayu/HR-Data-Analytics/assets/31111105/32b2f3cc-1e78-4df4-b5ee-918e894bec77)
+
 
 ### Data Source
 HR Data - The primary dataset used for this analysis is "hr_analytics_data.csv" file, containing detail information about each employee and their productivity level in the company.
