@@ -44,7 +44,7 @@ EDA involved exploring Employee Data to answer questions, such as:
 ### Data Analysis
 
 ```SQL
-#### Total Count of Employee
+### Total Count of Employee
 SELECT COUNT(EmployeeCount)
 FROM 
 	hr_mgt.dbo.hr_analytics_data;
@@ -55,7 +55,8 @@ FROM
 ```SQL
  SELECT (Gender), 
   COUNT(*) As Gender_Type,
-  CONCAT(ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2), '%') AS Percentage
+  CONCAT(
+        CAST(ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS DECIMAL(5, 2)),'%' ) AS Percentage
   FROM [hr_mgt].[dbo].[hr_analytics_data]
   GROUP BY (Gender)
 ```
@@ -207,11 +208,25 @@ ORDER BY
 ### Employee by Overtime by Count and Percentage
 
 ```SQL
-SELECT (Overtime), 
+ SELECT (Overtime), 
   COUNT(*) As Employee_by_Overtime,
-  CONCAT(ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2), '%') AS Percentage
+  COUNT(*) As Employee_by_Performance_Rating,
+  CONCAT(
+        CAST(ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS DECIMAL(5, 2)),'%' ) AS Percentage
   FROM [hr_mgt].[dbo].[hr_analytics_data]
   GROUP BY (Overtime)
+
+```
+
+### Employee by Performance Rating in Percentage
+
+```SQL
+ SELECT (PerformanceRating), 
+  COUNT(*) As Employee_by_Performance_Rating,
+  CONCAT(
+        CAST(ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS DECIMAL(5, 2)), '%') AS Percentage
+  FROM [hr_mgt].[dbo].[hr_analytics_data]
+  GROUP BY (PerformanceRating)
 
 ```
 
